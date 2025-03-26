@@ -1,0 +1,15 @@
+Dragostea din Tei,O-Zone,Pop,10.09.1990
+Sparks,Coldplay,Pop,11.12.2015
+Yellow,Coldplay,Pop,22.03.2018
+Are You Mine,Arctic Monkeys,Rock,11.02.2010
+I wanna be yours,Arctic Monkeys,Jazz,11.12.2022
+Corason,Maluma,Jazz,20.02.2016
+Beautiful Liar,Shakira,Jazz,10.09.2010
+Paradise,Coldplay,Pop,10.01.2017
+Mihaela,Marian,Rock,11.10.2020
+Mihaela,Andrei,Jazz,11.07.2000
+Mihaela,Mihai,Pop,11.10.2020
+Y,A,Rock,11.10.2020
+X,A,Pop,11.10.2020
+Z,B,Jazz,11.10.2020
+X,B,Jazz,11.10.2020

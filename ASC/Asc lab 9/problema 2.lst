@@ -1,0 +1,98 @@
+     1                                  bits 32 
+     2                                  global start
+     3                                  
+     4                                  extern exit, fopen, fclose,printf,fread ; adaugam fopen si fclose ca functii externe           
+     5                                  import exit msvcrt.dll     
+     6                                  import fopen msvcrt.dll     ; indicam asamblorului ca functia fopen se gaseste in libraria msvcrt.dll
+     7                                  import fclose msvcrt.dll      ; similar pentru fclose
+     8                                  import printf msvcrt.dll
+     9                                  import fread msvcrt.dll
+    10                                  
+    11                                  ;Se da un fisier text. Sa se citeasca continutul fisierului, sa se contorizeze numarul de consoane si sa se afiseze aceasta valoare. Numele fisierului text este definit in segmentul de date.
+    12                                  
+    13                                  segment data use32 class=data
+    14 00000000 646174612E74787400          fisier_citire db 'data.txt',0
+    15 00000009 7200                        mod_acces_1 db "r",0
+    16 0000000B FFFFFFFF                    descriptor dd -1
+    17                                      len equ 100   ;presupunem ca citim un text de maxim 100 de caractere
+    18 0000000F 00<rept>                    s times len db 0 ;in s vom retine sirul citit
+    19 00000073 6165696F754145494F-         sir_vocale db 'a','e','i','o','u','A','E','I','O','U'
+    19 0000007C 55                 
+    20 0000007D 257500                      format_afisare db '%u',0
+    21 00000080 <res 00000004>              lens resd 1 ;retinem numarul de caractere citite din fisier
+    22 00000084 4E7520732D61206369-         eroare db 'Nu s-a citit fisierul',0
+    22 0000008D 746974206669736965-
+    22 00000096 72756C00           
+    23                                      
+    24                                      
+    25                                  segment code use32 class=code
+    26                                  start:
+    27                                      ;fopen(nume_fisier,mod_acces)
+    28                                      ;deschidem fisierul de citire
+    29 00000000 68[09000000]                push dword mod_acces_1
+    30 00000005 68[00000000]                push dword fisier_citire
+    31 0000000A FF15[00000000]              call [fopen]
+    32 00000010 83C408                      ADD ESP,4*2
+    33 00000013 83F800                      CMP EAX,0 ;EAX va retine descriptorul de fisier iar in cazul in care nu s-a citit se va afisa un mesaj de eroare
+    34 00000016 0F8480000000                JE final
+    35                                      
+    36 0000001C A3[0B000000]                Mov [descriptor],EAX ;retinem in variabila descriptor descriptorul de fisier
+    37                                      
+    38                                      ; citim textul in fisierul deschis folosind functia fread
+    39                                      ; eax = fread(text, 1, len, descriptor_fis)
+    40 00000021 FF35[0B000000]              push dword [descriptor]
+    41 00000027 6A64                        push dword len ;presupunem ca citim un text de maxim 100 de caractere
+    42 00000029 6A01                        push dword 1   ;se citeste caracter cu caracter
+    43 0000002B 68[0F000000]                push dword s   ;se retine in s   
+    44 00000030 FF15[00000000]              call [fread]
+    45 00000036 A3[80000000]                mov [lens],eax ;dupa apelul functiei fread EAX contine numarul de caractere citite din fisier,iar s sirul citit din fisier
+    46 0000003B 83C410                      add esp, 4*4 
+    47                                          
+    48                                      ; apelam functia fclose pentru a inchide fisierul
+    49                                      ; fclose(descriptor_fis)
+    50 0000003E FF35[0B000000]              push dword [descriptor]
+    51 00000044 FF15[00000000]              call [fclose]
+    52 0000004A 83C404                      add esp, 4
+    53                                          
+    54                                     
+    55 0000004D BA00000000                  mov edx,0 ;in edx retinem numarul de consoane
+    56 00000052 BE[0F000000]                mov ESI,s ;cu ajutorul lui esi parcurgem s
+    57 00000057 8B0D[80000000]              mov ecx,[lens]; retinem in ecx numarul de caractere citite pentru a efectua loop-ul
+    58                                      bucla:
+    59 0000005D 8A06                            MOV AL,[ESI] ;extragem cate un caracter din s
+    60 0000005F 51                              push ecx
+    61 00000060 B90A000000                      mov ecx,10   ;mutam in ecx lungimea sirului de vocale pentru a compara ulterior caracterul curent din sir cu fiecare vocala
+    62 00000065 BF[73000000]                    mov EDI,sir_vocale ;cu edi parcurgem sirul de vocale
+    63                                          verifica_vocale:
+    64 0000006A 8A1F                                mov BL,[EDI] ;extragem cate o vocala
+    65 0000006C 47                                  INC EDI
+    66 0000006D 38D8                                CMP AL,BL    ;comparam cu caracterul curent din s
+    67 0000006F 7413                                JZ final_bucla ;daca s-a gasit o vocala se iese din bucla
+    68 00000071 E2F7                            loop verifica_vocale
+    69                                          verifica_litera:
+    70 00000073 3C41                                CMP AL,'A'    ;daca caracterul curent are codul ascii mai mic decat A clar nu e litera deci trecem la urmatorul caracter
+    71 00000075 720D                                JB final_bucla
+    72 00000077 3C7A                                CMP AL,'z'    ;la fel si in cazul in care codul ascii este mai mare decat a lui z
+    73 00000079 7709                                JA final_bucla
+    74 0000007B 3C61                                CMP AL,'a'    ;momentan stim ca 'A'<=AL<='z',iar daca AL>='a' rezulta ca este litera
+    75 0000007D 7304                                JAE count
+    76 0000007F 3C5A                                CMP AL,'Z'    ;stim ca 'A'<=AL<='a'<='z', iar daca AL>'Z' atunci nu este litera 
+    77 00000081 7701                                JA final_bucla
+    78                                      count:
+    79 00000083 42                              inc edx
+    80                                      final_bucla:
+    81 00000084 59                          pop ecx ;restauram valoarea lui ecx
+    82 00000085 46                          INC ESI
+    83 00000086 E2D5                        loop bucla
+    84                                      
+    85                                      ;printf(format_afisare,edx) afisam numarul de consoane din sir pe ecran
+    86 00000088 52                          push edx
+    87 00000089 68[7D000000]                push format_afisare
+    88 0000008E FF15[00000000]              call [printf]
+    89                                      
+    90 00000094 6A00                        push dword 0
+    91 00000096 FF15[00000000]              call [exit]
+    92                                      ;in cazul in care fisierul nu a putut fi deschis
+    93                                      final:
+    94 0000009C 68[84000000]                push dword eroare
+    95 000000A1 FF15[00000000]              call [printf]

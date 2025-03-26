@@ -1,0 +1,74 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  import fread msvcrt.dll
+    12                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets,fread
+    13                                  
+    14                                  ;16.	Se citesc nr din fisier, sa se faca suma nr mai mici decat 8 si sa se afiseze pe ecran.
+    15                                  segment data use32 class=data
+    16                                  
+    17 00000000 00000000                n dd 0
+    18 00000004 257500                  format db '%u',0
+    19 00000007 696E7075742E747874-     filename db 'input.txt',0
+    19 00000010 00                 
+    20 00000011 FFFFFFFF                descriptor dd -1
+    21 00000015 7200                    mod_acces db 'r',0
+    22 00000017 45726F6172652E2E2E-     mesaj db 'Eroare...',0
+    22 00000020 00                 
+    23                                  segment code use32 class=code
+    24                                  start:
+    25                                      
+    26                                      ;fopen(filename,mod_acces)
+    27 00000000 68[15000000]                push mod_acces
+    28 00000005 68[07000000]                push filename
+    29 0000000A FF15[00000000]              call [fopen]
+    30 00000010 83C408                      add esp,4*2
+    31                                      
+    32 00000013 83F800                      cmp eax,0
+    33 00000016 7463                        je eroare_deschidere
+    34 00000018 A3[11000000]                mov [descriptor],eax
+    35                                      
+    36 0000001D BB00000000                  mov ebx,0
+    37                                      citire:
+    38                                          ;fscanf(descriptor,format,n)
+    39 00000022 68[00000000]                    push n 
+    40 00000027 68[04000000]                    push format
+    41 0000002C FF35[11000000]                  push dword[descriptor]
+    42 00000032 FF15[00000000]                  call [fscanf]
+    43 00000038 83C40C                          add esp,4*3
+    44                                          
+    45 0000003B 833D[00000000]FF                cmp dword[n],-1
+    46 00000042 7411                            JE iesi
+    47 00000044 833D[00000000]08                cmp dword[n],8
+    48 0000004B 77D5                            JA citire
+    49 0000004D 031D[00000000]                  add ebx,dword[n]
+    50 00000053 EBCD                            JMP citire
+    51                                      iesi:
+    52 00000055 53                          push ebx
+    53 00000056 68[04000000]                push format
+    54 0000005B FF15[00000000]              call [printf]
+    55 00000061 83C408                      add esp,4*2
+    56                                      ;fclose(descriptor)
+    57 00000064 FF35[11000000]              push dword[descriptor]
+    58 0000006A FF15[00000000]              call [fclose]
+    59 00000070 83C404                      add esp,4
+    60                                      
+    61 00000073 6A00                        push dword 0
+    62 00000075 FF15[00000000]              call [exit]
+    63                                      
+    64                                      eroare_deschidere:
+    65 0000007B 68[17000000]                push mesaj
+    66 00000080 FF15[00000000]              call [printf]
+    67 00000086 83C404                      add esp,4
+    68                                      
+    69 00000089 6A00                        push dword 0
+    70 0000008B FF15[00000000]              call [exit]
+    71                                  
+    72                                     

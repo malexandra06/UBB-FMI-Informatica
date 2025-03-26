@@ -1,0 +1,85 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  import fread msvcrt.dll
+    12                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets,fread
+    13                                  
+    14                                  
+    15                                  ;19.	Sa se citeasca de la tastatura un numar n, apoi sa se citeasca mai multe cuvinte, pana cand se citeste cuvantul/caracterul "#". Sa se scrie intr-un fisier text toate cuvintele citite care incep si se termina cu
+    16                                  
+    17                                  
+    18                                  segment data use32 class=data
+    19                                  
+    20 00000000 00000000                n dd 0
+    21 00000004 <res 00000064>          cuv resb 100
+    22 00000068 6F75747075742E7478-     filename db 'output.txt',0
+    22 00000071 7400               
+    23 00000073 6100                    mod_acces db 'a',0
+    24 00000075 FFFFFFFF                descriptor dd -1
+    25 00000079 257300                  format_sir db '%s',0
+    26 0000007C 257500                  format_nr db '%u',0
+    27 0000007F 25732000                format_fis db '%s ',0
+    28                                  
+    29                                  segment code use32 class=code
+    30                                  start:
+    31                                      ;scanf(%u,&n)
+    32 00000000 68[00000000]                push n 
+    33 00000005 68[7C000000]                push format_nr
+    34 0000000A FF15[00000000]              call [scanf]
+    35 00000010 83C408                      add esp,4*2
+    36                                      
+    37                                      ;fopen(filename,mod_acces)
+    38 00000013 68[73000000]                push mod_acces
+    39 00000018 68[68000000]                push filename
+    40 0000001D FF15[00000000]              call [fopen]
+    41 00000023 83C408                      add esp,4*2
+    42                                      
+    43 00000026 A3[75000000]                mov dword[descriptor],eax
+    44                                      
+    45                                      citire:
+    46 0000002B 68[04000000]                      push cuv
+    47 00000030 68[79000000]                      push format_sir
+    48 00000035 FF15[00000000]                    call [scanf]
+    49 0000003B 83C408                            add esp,4*2
+    50 0000003E 803D[04000000]23                  cmp byte[cuv],'#'
+    51 00000045 7442                              JE iesire
+    52 00000047 BE[04000000]                      mov esi,cuv
+    53 0000004C BA00000000                        mov edx,0
+    54 00000051 8A1D[04000000]                    mov bl,byte[cuv]
+    55                                            parcurgere:
+    56 00000057 AC                                          lodsb
+    57 00000058 3C00                                        cmp al,0
+    58 0000005A 7403                                        JE final_sir
+    59 0000005C 42                                          inc edx
+    60 0000005D EBF8                                        JMP parcurgere
+    61                                            final_sir:
+    62 0000005F 8A46FE                                     mov al,byte[esi-2]
+    63 00000062 38D8                                       cmp al,bl 
+    64 00000064 75C5                                       JNE citire
+    65 00000066 3B15[00000000]                             cmp edx,dword[n]
+    66 0000006C 72BD                                       JB citire
+    67                                                     ;fprintf(descriptor,format,sir)
+    68 0000006E 68[04000000]                               push cuv 
+    69 00000073 68[7F000000]                               push format_fis
+    70 00000078 FF35[75000000]                             push dword[descriptor]
+    71 0000007E FF15[00000000]                             call [fprintf]
+    72 00000084 83C40C                                     add esp,4*3
+    73 00000087 EBA2                                       JMP citire
+    74                                      iesire:
+    75                                      
+    76                                      ;fclose(descriptor)
+    77 00000089 FF35[75000000]              push dword[descriptor]
+    78 0000008F FF15[00000000]              call [fclose]
+    79 00000095 83C404                      add esp,4
+    80                                      
+    81 00000098 6A00                        push dword 0
+    82 0000009A FF15[00000000]              call [exit]
+    83                                  
+    84                                     

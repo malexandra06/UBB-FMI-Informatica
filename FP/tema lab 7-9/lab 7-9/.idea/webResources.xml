@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebResourcesPaths">
+    <contentEntries>
+      <entry url="file://$PROJECT_DIR$">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/domain_problem" />
+            <path value="file://$PROJECT_DIR$/repository" />
+            <path value="file://$PROJECT_DIR$/ui" />
+            <path value="file://$PROJECT_DIR$" />
+            <path value="file://$PROJECT_DIR$/data" />
+            <path value="file://$PROJECT_DIR$/utils" />
+            <path value="file://$PROJECT_DIR$/tests" />
+            <path value="file://$PROJECT_DIR$/teste_domain" />
+            <path value="file://$PROJECT_DIR$/teste_repository" />
+            <path value="file://$PROJECT_DIR$/service" />
+            <path value="file://$PROJECT_DIR$/generari_random" />
+            <path value="file://$PROJECT_DIR$/exceptions" />
+            <path value="file://$PROJECT_DIR$/teste_service" />
+            <path value="file://$PROJECT_DIR$/sortari" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+    </contentEntries>
+  </component>
+</project>

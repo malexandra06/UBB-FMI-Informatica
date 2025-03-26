@@ -1,0 +1,71 @@
+     1                                  bits 32 ;asamblare si compilare pentru arhitectura de 32 biti
+     2                                  ; definim punctul de intrare in programul principal
+     3                                  global  start 
+     4                                  import fclose msvcrt.dll
+     5                                  import fscanf msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  import fprintf msvcrt.dll
+    10                                  import gets msvcrt.dll
+    11                                  import exit msvcrt.dll
+    12                                  extern printf, exit,scanf,fopen,fscanf,fclose,fprintf,gets
+    13                                          ; msvcrt.dll contine exit, printf si toate celelalte functii C-runtime importante
+    14                                          
+    15                                  ;3.	Se citeste o propozitie de la tastatura. Sa se inverseze fiecare cuvant si sa se afiseze pe ecran.        
+    16                                  
+    17                                  segment  data use32 class=data ; segmentul de date in care se vor defini variabilele 
+    18 00000000 <res 00000064>          sir resb 100
+    19 00000064 <res 00000064>          inv resb 100
+    20 000000C8 257300                  format db '%s',0
+    21                                  segment  code use32 class=code ; segmentul de cod
+    22                                  start: 
+    23                                      ;gets(buffer)
+    24 00000000 68[00000000]                push sir
+    25 00000005 FF15[00000000]              call [gets]
+    26 0000000B 83C404                      add esp,4
+    27 0000000E FC                          cld
+    28 0000000F B900000000                  mov ecx,0
+    29 00000014 BE[00000000]                mov esi,sir
+    30 00000019 BF[64000000]                mov edi,inv
+    31                                      repeta:
+    32 0000001E AC                              lodsb
+    33 0000001F 3C20                            cmp al,' '
+    34 00000021 7409                            JE next_cuv
+    35 00000023 3C00                            cmp al,0
+    36 00000025 741E                            JE iesire
+    37 00000027 83C101                          add ecx,1
+    38 0000002A EBF2                            JMP repeta
+    39                                      next_cuv:
+    40 0000002C 89F3                            mov ebx,esi
+    41 0000002E 53                              push ebx
+    42 0000002F 4E                              dec esi
+    43 00000030 4E                              dec esi
+    44 00000031 FD                              std
+    45                                          copie:
+    46 00000032 AC                                  lodsb
+    47 00000033 FC                                  cld
+    48 00000034 AA                                  stosb
+    49 00000035 FD                                  std
+    50 00000036 E2FA                            loop copie
+    51 00000038 FC                              cld
+    52 00000039 C60720                          mov byte [edi],' '
+    53 0000003C 47                              inc edi
+    54 0000003D 5E                              pop esi
+    55 0000003E B900000000                      mov ecx,0
+    56 00000043 EBD9                            JMP repeta
+    57                                      iesire:
+    58 00000045 4E                              dec esi
+    59 00000046 4E                              dec esi
+    60 00000047 FD                              std
+    61                                          ultim:
+    62 00000048 AC                                  lodsb
+    63 00000049 FC                                  cld
+    64 0000004A AA                                  stosb
+    65 0000004B FD                                  std
+    66 0000004C E2FA                            loop ultim
+    67 0000004E 68[64000000]                push inv
+    68 00000053 68[C8000000]                push format
+    69 00000058 FF15[00000000]              call [printf]
+    70 0000005E 6A00                        push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+    71 00000060 FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului

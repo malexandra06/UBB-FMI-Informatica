@@ -1,0 +1,93 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets
+    12                                  
+    13                                  ;17.	Sir de la tastatura cu nr de maxim 5 cifre. sa se gaseasca max si min,sa se scrie in fisier, sa se inmulteasca si rezultatul sa se pastreze in mem.
+    14                                  segment data use32 class=data
+    15 00000000 00000000                n dd 0
+    16 00000004 00000000                max dd 0
+    17 00000008 FFFFFFFF                min dd 0FFFFFFFFh
+    18 0000000C 257500                  format db '%u',0
+    19 0000000F 25752000                format_afis db '%u ',0
+    20 00000013 6F75747075742E7478-     fisier db 'output.txt',0
+    20 0000001C 7400               
+    21 0000001E 6100                    mod_acces db 'a',0
+    22 00000020 FFFFFFFF                descriptor dd -1
+    23 00000024 0000000000000000        rez dq 0
+    24 0000002C 256C6C7500              format_long db '%llu',0
+    25                                  
+    26                                  segment code use32 class=code
+    27                                  start:
+    28                                  
+    29                                      bucla:
+    30 00000000 68[00000000]                    push dword n
+    31 00000005 68[0C000000]                    push format
+    32 0000000A FF15[00000000]                  call [scanf]
+    33 00000010 83C408                          add esp,4*2
+    34                                          
+    35 00000013 833D[00000000]00                cmp dword[n],0
+    36 0000001A 7421                            JE iesire_bucla
+    37                                          
+    38 0000001C A1[00000000]                    mov eax,dword[n]
+    39 00000021 3B05[08000000]                  cmp eax,dword[min]
+    40 00000027 7305                            JAE maxim
+    41 00000029 A3[08000000]                    mov dword[min],eax
+    42                                          maxim:
+    43 0000002E 3B05[04000000]                      cmp eax,dword[max]
+    44 00000034 76CA                                JBE bucla
+    45 00000036 A3[04000000]                        mov dword[max],eax
+    46 0000003B EBC3                                jmp bucla
+    47                                              
+    48                                      iesire_bucla:
+    49                                      ;fopen(fisier,mod_acces)
+    50 0000003D 68[1E000000]                push mod_acces
+    51 00000042 68[13000000]                push fisier
+    52 00000047 FF15[00000000]              call [fopen]
+    53 0000004D 83C408                      add esp,4*2
+    54                                      
+    55 00000050 83F800                      cmp eax,0
+    56 00000053 747A                        je eroare
+    57 00000055 A3[20000000]                mov dword[descriptor],eax
+    58                                      
+    59                                      
+    60 0000005A FF35[04000000]              push dword [max]
+    61 00000060 68[0F000000]                push format_afis
+    62 00000065 FF35[20000000]              push dword[descriptor]
+    63 0000006B FF15[00000000]              call [fprintf]
+    64 00000071 83C40C                      add esp,4*3
+    65                                      
+    66 00000074 FF35[08000000]              push dword [min]
+    67 0000007A 68[0F000000]                push format_afis
+    68 0000007F FF35[20000000]              push dword[descriptor]
+    69 00000085 FF15[00000000]              call [fprintf]
+    70 0000008B 83C40C                      add esp,4*3
+    71                                      
+    72                                      ;fclose(descriptor)
+    73 0000008E FF35[20000000]              push dword[descriptor]
+    74 00000094 FF15[00000000]              call [fclose]
+    75 0000009A 83C404                      add esp,4
+    76                                      
+    77 0000009D A1[08000000]                mov eax,[min]
+    78 000000A2 8B1D[04000000]              mov ebx,dword[max]
+    79 000000A8 F7E3                        mul ebx
+    80 000000AA 8915[28000000]              mov dword[rez+4],edx
+    81 000000B0 A3[24000000]                mov dword[rez],eax
+    82                                      
+    83 000000B5 FF35[28000000]              push dword[rez+4]
+    84 000000BB FF35[24000000]              push dword[rez]
+    85 000000C1 68[2C000000]                push format_long
+    86 000000C6 FF15[00000000]              call [printf]
+    87 000000CC 83C40C                      add esp,4*3
+    88                                      eroare:
+    89 000000CF 6A00                        push dword 0
+    90 000000D1 FF15[00000000]              call [exit]
+    91                                  
+    92                                     
