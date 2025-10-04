@@ -1,0 +1,126 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets
+    12                                  
+    13                                  segment data use32 class=data
+    14 00000000 FFFFFFFF                a dd -1
+    15 00000004 <res 00000064>          s resb 100
+    16 00000068 696E707574312E7478-     file_read db 'input1.txt', 0
+    16 00000071 7400               
+    17 00000073 6F75747075742E7478-     file_out db 'output.txt', 0
+    17 0000007C 7400               
+    18 0000007E 257300                  format db '%s', 0
+    19 00000081 7200                    mod_in db 'r', 0
+    20 00000083 7700                    mod_out db 'w', 0
+    21 00000085 FFFFFFFF                descriptor dd -1
+    22 00000089 256300                  format_ch db '%c', 0
+    23 0000008C 45524F41524500          mesaj db 'EROARE', 0
+    24 00000093 44657363726970746F-     debug_msg db 'Descriptor: %d', 0
+    24 0000009C 723A20256400       
+    25                                  
+    26                                  segment code use32 class=code
+    27                                  start:
+    28                                      ; Deschidere fișier input
+    29 00000000 68[81000000]                push mod_in
+    30 00000005 68[68000000]                push file_read
+    31 0000000A FF15[00000000]              call [fopen]
+    32 00000010 83C408                      add esp, 4 * 2
+    33 00000013 83F800                      cmp eax, 0
+    34 00000016 0F84D8000000                je eroare
+    35 0000001C A3[85000000]                mov [descriptor], eax
+    36                                  
+    37                                      ; Debugging: afișare descriptor fișier input
+    38 00000021 50                          push eax
+    39 00000022 68[93000000]                push debug_msg
+    40 00000027 FF15[00000000]              call [printf]
+    41 0000002D 83C408                      add esp, 8
+    42                                  
+    43                                      ; Procesare conținut fișier
+    44 00000030 BF[04000000]                mov edi, s
+    45 00000035 B10A                        mov cl, 10
+    46                                      bucla:
+    47 00000037 57                          push edi
+    48 00000038 51                          push ecx
+    49 00000039 68[00000000]                    push a
+    50 0000003E 68[89000000]                    push format_ch
+    51 00000043 FF35[85000000]                  push dword [descriptor]
+    52 00000049 FF15[00000000]                  call [fscanf]
+    53 0000004F 83C40C                          add esp, 4 * 3
+    54 00000052 83F801                          cmp eax, 1
+    55 00000055 752F                            jne ies
+    56 00000057 59                      pop ecx
+    57 00000058 5F                      pop edi
+    58 00000059 B400                            mov ah, 0
+    59 0000005B A0[00000000]                    mov al, [a]
+    60 00000060 3C61                            cmp al, 'a'
+    61 00000062 721F                            jb save
+    62 00000064 3C7A                            cmp al, 'z'
+    63 00000066 771B                            ja save
+    64                                          nr:
+    65 00000068 F6F1                            div cl
+    66 0000006A 88E2                            mov dl,ah
+    67 0000006C B400                            mov ah,0
+    68 0000006E F6F1                            div cl
+    69 00000070 3C00                            cmp al,0
+    70 00000072 7403                            JZ jos
+    71 00000074 0430                            add al,48
+    72 00000076 AA                              stosb
+    73                                          jos:
+    74 00000077 86E0                            xchg ah, al
+    75 00000079 0430                            add al,48
+    76 0000007B AA                              stosb
+    77 0000007C 88D0                            mov al,dl
+    78 0000007E 0430                            add al,48
+    79 00000080 AA                              stosb
+    80 00000081 EBB4                            jmp bucla
+    81                                      save:
+    82 00000083 AA                              stosb
+    83 00000084 EBB1                            jmp bucla
+    84                                      ies:
+    85 00000086 C60700                      mov byte [edi], 0
+    86 00000089 FF35[85000000]              push dword [descriptor]
+    87 0000008F FF15[00000000]              call [fclose]
+    88 00000095 83C404                      add esp, 4
+    89                                  
+    90                                      ; Deschidere fișier output
+    91 00000098 68[83000000]                push mod_out
+    92 0000009D 68[73000000]                push file_out
+    93 000000A2 FF15[00000000]              call [fopen]
+    94 000000A8 83C408                      add esp, 4 * 2
+    95 000000AB 83F800                      cmp eax, 0
+    96 000000AE 7444                        je eroare
+    97 000000B0 A3[85000000]                mov [descriptor], eax
+    98                                  
+    99                                      ; Debugging: afișare descriptor fișier output
+   100 000000B5 50                          push eax
+   101 000000B6 68[93000000]                push debug_msg
+   102 000000BB FF15[00000000]              call [printf]
+   103 000000C1 83C408                      add esp, 8
+   104                                  
+   105                                      ; Scriere conținut în fișierul output
+   106 000000C4 68[04000000]                push s
+   107 000000C9 68[7E000000]                push format
+   108 000000CE FF35[85000000]              push dword [descriptor]
+   109 000000D4 FF15[00000000]              call [fprintf]
+   110 000000DA 83C40C                      add esp, 4 * 3
+   111                                  
+   112                                      ; Închidere fișier și ieșire
+   113 000000DD FF35[85000000]              push dword [descriptor]
+   114 000000E3 FF15[00000000]              call [fclose]
+   115 000000E9 83C404                      add esp, 4
+   116 000000EC 6A00                        push dword 0
+   117 000000EE FF15[00000000]              call [exit]
+   118                                  
+   119                                  eroare:
+   120 000000F4 68[8C000000]                push mesaj
+   121 000000F9 FF15[00000000]              call [printf]
+   122 000000FF 6A00                        push dword 0
+   123 00000101 FF15[00000000]              call [exit]

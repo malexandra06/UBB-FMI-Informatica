@@ -1,0 +1,93 @@
+     1                                  bits 32 ;asamblare si compilare pentru arhitectura de 32 biti
+     2                                  ; definim punctul de intrare in programul principal
+     3                                  global  start 
+     4                                  import fclose msvcrt.dll
+     5                                  import fscanf msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  import fprintf msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  extern printf, exit,scanf,fopen,fscanf,fclose,fprintf
+    12                                          ; msvcrt.dll contine exit, printf si toate celelalte functii C-runtime importante
+    13                                          
+    14                                          
+    15                                  ;2.	Se citește de la tastatură un număr N și apoi N numere.
+    16                                  ;Să se calculeze suma numerelor pare introduse, să se calculeze suma numerelor impare introduse, apoi diferența dintre cele două sume.
+    17                                  ;Să se afișeze în fișierul output.txt cele 3 rezultate, în baza 16, pe linii separate.
+    18                                  
+    19                                  segment  data use32 class=data ; segmentul de date in care se vor defini variabilele 
+    20 00000000 00000000                n dd -0
+    21 00000004 00000000                a dd 0
+    22 00000008 6F75747075742E7478-     filename db 'output.txt',0
+    22 00000011 7400               
+    23 00000013 7700                    mod_acces db 'w',0
+    24 00000015 FFFFFFFF                descriptor dd -1
+    25 00000019 257500                  format db '%u',0
+    26 0000001C 25752000                format_afis db '%u ',0
+    27                                  segment  code use32 class=code ; segmentul de cod
+    28                                  start: 
+    29                                      ;scanf(format,n)
+    30 00000000 68[00000000]                push dword n
+    31 00000005 68[19000000]                push dword format
+    32 0000000A FF15[00000000]              call [scanf]
+    33 00000010 83C408                      add esp,4*2
+    34                                      
+    35 00000013 8B0D[00000000]              mov ecx,[n]
+    36 00000019 BB00000000                  mov ebx,0 ;suma numerelor pare
+    37 0000001E BA00000000                  mov edx,0 ;suma numerelor impare
+    38                                      bucla_citire:
+    39 00000023 60                          pushad
+    40                                      ;scanf(format,a)
+    41 00000024 68[04000000]                push dword a
+    42 00000029 68[19000000]                push dword format
+    43 0000002E FF15[00000000]              call [scanf]
+    44 00000034 83C408                      add esp,4*2
+    45 00000037 61                          popad
+    46 00000038 A1[04000000]                mov eax,[a]
+    47 0000003D A901000000                  test eax,1
+    48 00000042 7504                        JNZ impar
+    49                                      par:
+    50 00000044 01C3                            add ebx,eax
+    51 00000046 EB02                            JMP final
+    52                                      impar:
+    53 00000048 01C2                            add edx,eax
+    54                                      final:
+    55 0000004A E2D7                        loop bucla_citire
+    56 0000004C 60                          pushad
+    57                                      ;fopen(nume_fisier,mod_acces)
+    58 0000004D 68[13000000]                push mod_acces
+    59 00000052 68[08000000]                push dword filename
+    60 00000057 FF15[00000000]              call [fopen]
+    61 0000005D 83C408                      add esp,4*2
+    62 00000060 83F800                      cmp eax,0
+    63 00000063 7460                        JZ eroare
+    64 00000065 A3[15000000]                mov [descriptor],eax
+    65                                      
+    66 0000006A 61                          popad
+    67 0000006B 89D8                        mov eax,ebx
+    68 0000006D 29D0                        sub eax,edx
+    69                                      ;fprintf(descriptor,format_afis,variabile)
+    70 0000006F 50                          push eax
+    71 00000070 52                          push edx
+    72 00000071 53                          push ebx
+    73 00000072 68[1C000000]                push format_afis
+    74 00000077 FF35[15000000]              push dword[descriptor]
+    75 0000007D FF15[00000000]              call [fprintf]
+    76 00000083 83C40C                      add esp,4*3
+    77 00000086 68[1C000000]                push format_afis
+    78 0000008B FF35[15000000]              push dword[descriptor]
+    79 00000091 FF15[00000000]              call [fprintf]
+    80 00000097 83C40C                      add esp,4*3
+    81 0000009A 68[1C000000]                push format_afis
+    82 0000009F FF35[15000000]              push dword[descriptor]
+    83 000000A5 FF15[00000000]              call [fprintf]
+    84 000000AB 83C40C                      add esp,4*3
+    85 000000AE FF35[15000000]              push dword[descriptor]
+    86 000000B4 FF15[00000000]              call [fclose]
+    87 000000BA 83C404                      add esp,4
+    88 000000BD 6A00                    	push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+    89 000000BF FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului
+    90                                      eroare:
+    91 000000C5 6A00                        push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+    92 000000C7 FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului

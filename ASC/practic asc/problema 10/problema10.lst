@@ -1,0 +1,87 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets
+    12                                  
+    13                                  ;Se citeste de la tastatura m,n apoi m numere zecimale, pe linii diferite. Sa se afiseze nr cu cel putin n cifre pare in output.txt.
+    14                                  segment data use32 class=data
+    15 00000000 00000000                m dd 0
+    16 00000004 00000000                n dd 0
+    17 00000008 00000000                a dd 0
+    18 0000000C 6F75747075742E7478-     filename db 'output.txt',0
+    18 00000015 7400               
+    19 00000017 6100                    mod_acces db 'a',0
+    20 00000019 FFFFFFFF                descriptor dd -1
+    21 0000001D 257500                  format db '%u',0
+    22 00000020 00                      nr db 0
+    23                                  segment code use32 class=code
+    24                                  start:
+    25 00000000 68[00000000]                push dword m
+    26 00000005 68[1D000000]                push format
+    27 0000000A FF15[00000000]              call [scanf]
+    28 00000010 83C408                      add esp, 4*2
+    29                                      
+    30 00000013 68[04000000]                push dword n
+    31 00000018 68[1D000000]                push format
+    32 0000001D FF15[00000000]              call [scanf]
+    33 00000023 83C408                      add esp,4*2
+    34                                      
+    35                                      ;fopen(filename,mod_acces)
+    36 00000026 68[17000000]                push dword mod_acces
+    37 0000002B 68[0C000000]                push filename
+    38 00000030 FF15[00000000]              call [fopen]
+    39 00000036 83C408                      add esp,4*2
+    40                                      
+    41 00000039 83F800                      cmp eax,0
+    42 0000003C 0F8490000000                je eroare
+    43 00000042 A3[19000000]                mov dword[descriptor],eax
+    44                                      
+    45 00000047 8B0D[00000000]              mov ecx,[m]
+    46                                      bucla:
+    47 0000004D C705[20000000]0000-             mov dword [nr],0
+    47 00000055 0000               
+    48 00000057 51                              push ecx
+    49                                          ;scanf(format,a)
+    50 00000058 68[08000000]                    push a
+    51 0000005D 68[1D000000]                    push format
+    52 00000062 FF15[00000000]                  call [scanf]
+    53 00000068 83C408                          add esp,4*2
+    54 0000006B BB0A000000                      mov ebx,10
+    55 00000070 A1[08000000]                    mov eax,[a]
+    56 00000075 59                              pop ecx
+    57                                          cifre:
+    58 00000076 83F800                              cmp eax,0
+    59 00000079 7417                                JE ies1
+    60 0000007B BA00000000                          mov edx,0
+    61 00000080 F7F3                                div ebx
+    62 00000082 F7C201000000                        test edx,1
+    63 00000088 75EC                                JNZ cifre
+    64 0000008A FE05[20000000]                      inc byte[nr]
+    65 00000090 EBE4                                JMP cifre
+    66                                          ies1:
+    67 00000092 BA00000000                          mov edx,0
+    68 00000097 8A15[20000000]                      mov dl,[nr]
+    69 0000009D 3B15[04000000]                      cmp edx,dword [n]
+    70 000000A3 751C                                JNE ies
+    71 000000A5 51                                  push ecx
+    72 000000A6 FF35[08000000]                      push dword [a]
+    73 000000AC 68[1D000000]                        push format
+    74 000000B1 FF35[19000000]                      push dword[descriptor]
+    75 000000B7 FF15[00000000]                      call [fprintf]
+    76 000000BD 83C40C                              add esp,4*3
+    77 000000C0 59                                  pop ecx
+    78                                          ies:
+    79 000000C1 E28A                        loop bucla
+    80 000000C3 FF35[19000000]              push dword [descriptor]
+    81 000000C9 FF15[00000000]              call [fclose]
+    82 000000CF 83C404                      add esp,4
+    83                                      eroare:
+    84 000000D2 6A00                        push dword 0
+    85 000000D4 FF15[00000000]              call [exit]

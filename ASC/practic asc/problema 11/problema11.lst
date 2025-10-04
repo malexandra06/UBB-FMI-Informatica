@@ -1,0 +1,101 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets
+    12                                  
+    13                                  ;Se citesc cuvinte de la tastatura, sa se creeze un fisier cu numele primului .txt si restul sa se afiseze in acest fisier cu literele inversate
+    14                                  segment data use32 class=data
+    15 00000000 <res 00000064>          s resb 100
+    16 00000064 <res 00000064>          inv resb 100
+    17 000000C8 <res 0000000A>          filename resb 10
+    18 000000D2 6100                    mod_acces db 'a',0
+    19 000000D4 FFFFFFFF                descriptor dd -1
+    20 000000D8 257300                  format db '%s',0
+    21 000000DB 0A00                    space db 0x0A,0
+    22                                  segment code use32 class=code
+    23                                  start:
+    24 00000000 68[C8000000]                push dword filename
+    25 00000005 FF15[00000000]              call [gets]
+    26 0000000B 83C404                      add esp,4
+    27 0000000E BF[C8000000]                mov edi,filename
+    28                                      bucla:
+    29 00000013 803F00                          cmp byte[edi],0
+    30 00000016 7403                            JE iesi
+    31 00000018 47                              inc edi
+    32 00000019 EBF8                            jmp bucla
+    33                                      iesi:
+    34 0000001B B02E                        mov al,'.'
+    35 0000001D AA                          stosb
+    36 0000001E B074                        mov al,'t'
+    37 00000020 AA                          stosb
+    38 00000021 B078                        mov al,'x'
+    39 00000023 AA                          stosb
+    40 00000024 B074                        mov al,'t'
+    41 00000026 AA                          stosb
+    42 00000027 C60700                      mov byte[edi],0
+    43                                      
+    44                                      ;fopen(filename,mod_acces)
+    45 0000002A 68[D2000000]                push mod_acces
+    46 0000002F 68[C8000000]                push filename
+    47 00000034 FF15[00000000]              call [fopen]
+    48 0000003A 83C408                      add esp,4*2
+    49                                      
+    50 0000003D 83F800                      cmp eax,0
+    51 00000040 0F8488000000                JE eroare
+    52 00000046 A3[D4000000]                mov [descriptor],eax
+    53                                      
+    54                                      citire:
+    55 0000004B 68[00000000]                    push s
+    56 00000050 FF15[00000000]                  call [gets]
+    57 00000056 83C404                          add esp,4
+    58                                          
+    59 00000059 803D[00000000]00                cmp byte[s],0
+    60 00000060 745D                            je afara
+    61 00000062 BE[00000000]                    mov esi,s
+    62 00000067 B900000000                      mov ecx,0
+    63                                          parcurgere:
+    64 0000006C AC                                  lodsb
+    65 0000006D 41                                  inc ecx
+    66 0000006E 3C00                                cmp al,0
+    67 00000070 7402                                JE afara_b
+    68 00000072 EBF8                                JMP parcurgere
+    69                                          afara_b:
+    70 00000074 83EE02                              sub esi,2
+    71 00000077 49                                  dec ecx
+    72 00000078 BF[64000000]                        mov edi,inv
+    73                                              inversare:
+    74 0000007D 8A06                                    mov al,[esi]
+    75 0000007F 4E                                      dec esi
+    76 00000080 8807                                    mov byte[edi],al
+    77 00000082 47                                      inc edi
+    78 00000083 E2F8                                loop inversare
+    79                                           
+    80 00000085 C60700                              mov byte[edi],0
+    81 00000088 68[64000000]                        push inv
+    82 0000008D 68[D8000000]                        push format
+    83 00000092 FF35[D4000000]                      push dword[descriptor]
+    84 00000098 FF15[00000000]                      call [fprintf]
+    85 0000009E 83C40C                              add esp,4*3
+    86                                              
+    87 000000A1 68[DB000000]                        push space
+    88 000000A6 68[D8000000]                        push format
+    89 000000AB FF35[D4000000]                      push dword[descriptor]
+    90 000000B1 FF15[00000000]                      call[fprintf]
+    91 000000B7 83C40C                              add esp,4*3
+    92                                              
+    93 000000BA E954FFFFFF                          Jmp bucla
+    94                                      afara:
+    95                                      ;fclose(descriptor)
+    96 000000BF FF35[D4000000]              push dword[descriptor]
+    97 000000C5 FF15[00000000]              call [fclose]
+    98 000000CB 83C404                      add esp,4
+    99                                      eroare:
+   100 000000CE 6A00                        push dword 0
+   101 000000D0 FF15[00000000]              call [exit]

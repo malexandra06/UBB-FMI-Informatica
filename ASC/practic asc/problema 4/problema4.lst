@@ -1,0 +1,51 @@
+     1                                  bits 32 ;asamblare si compilare pentru arhitectura de 32 biti
+     2                                  ; definim punctul de intrare in programul principal
+     3                                  global  start 
+     4                                  import fclose msvcrt.dll
+     5                                  import fscanf msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  import fprintf msvcrt.dll
+    10                                  import gets msvcrt.dll
+    11                                  import exit msvcrt.dll
+    12                                  extern printf, exit,scanf,fopen,fscanf,fclose,fprintf,gets
+    13                                          ; msvcrt.dll contine exit, printf si toate celelalte functii C-runtime importante
+    14                                          
+    15                                  ;4.	Se citeste o propozitie de la tastatura. Sa se numere literele din fiecare cuvant si sa se afiseze aceste numere pe ecran.       
+    16                                  
+    17                                  segment  data use32 class=data ; segmentul de date in care se vor defini variabilele 
+    18 00000000 <res 00000064>          sir resb 100
+    19 00000064 25752000                format db '%u ',0
+    20                                  
+    21                                  segment  code use32 class=code ; segmentul de cod
+    22                                  start: 
+    23                                      ;gets(buffer)
+    24 00000000 68[00000000]                push sir
+    25 00000005 FF15[00000000]              call [gets]
+    26 0000000B 83C404                      add esp,4
+    27                                      
+    28 0000000E BE[00000000]                mov esi,sir
+    29 00000013 B900000000                  mov ecx,0
+    30                                      repeta:
+    31 00000018 AC                              lodsb
+    32 00000019 3C00                            cmp al,0
+    33 0000001B 741F                            je iesire
+    34 0000001D 3C20                            cmp al,' '
+    35 0000001F 7405                            je afisare
+    36 00000021 83C101                          add ecx,1
+    37 00000024 EBF2                            JMP repeta
+    38                                      afisare:
+    39 00000026 51                              push ecx
+    40 00000027 68[64000000]                    push format
+    41 0000002C FF15[00000000]                  call [printf]
+    42 00000032 83C408                          add esp,4*2
+    43 00000035 B900000000                      mov ecx,0
+    44 0000003A EBDC                            JMP repeta
+    45                                      iesire: ;ultimul cuvant
+    46 0000003C 51                              push ecx
+    47 0000003D 68[64000000]                    push format
+    48 00000042 FF15[00000000]                  call [printf]
+    49 00000048 83C408                          add esp,4*2
+    50 0000004B 6A00                        push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+    51 0000004D FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului

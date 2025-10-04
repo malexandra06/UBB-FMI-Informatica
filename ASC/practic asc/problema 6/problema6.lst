@@ -1,0 +1,122 @@
+     1                                  bits 32 ;asamblare si compilare pentru arhitectura de 32 biti
+     2                                  ; definim punctul de intrare in programul principal
+     3                                  global  start 
+     4                                  import fclose msvcrt.dll
+     5                                  import fscanf msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  import fprintf msvcrt.dll
+    10                                  import gets msvcrt.dll
+    11                                  import exit msvcrt.dll
+    12                                  extern printf, exit,scanf,fopen,fscanf,fclose,fprintf,gets
+    13                                          ; msvcrt.dll contine exit, printf si toate celelalte functii C-runtime importante
+    14                                          
+    15                                  ;6.	Se citesc din fisierul numere.txt mai multe numere (pare si impare). Sa se creeze 2 siruri rezultat N si P astfel: N - doar numere impare si P - doar numere pare. Afisati cele 2 siruri rezultate pe ecran.
+    16                                  
+    17                                  segment  data use32 class=data ; segmentul de date in care se vor defini variabilele 
+    18 00000000 00000000                a dd 0
+    19 00000004 <res 00000190>          N resd 100
+    20 00000194 <res 00000190>          P resd 100
+    21 00000324 6E756D6572652E7478-     filename db 'numere.txt',0
+    21 0000032D 7400               
+    22 0000032F 7200                    mod_acces db 'r',0
+    23 00000331 FFFFFFFF                descriptor dd -1
+    24 00000335 45726F617265206C61-     mesaj db 'Eroare la citirea din fisier',0
+    24 0000033E 206369746972656120-
+    24 00000347 64696E206669736965-
+    24 00000350 7200               
+    25 00000352 25752000                format_citire db '%u ',0
+    26 00000356 0A00                    spatiu db 0x0A, 0
+    27                                  segment  code use32 class=code ; segmentul de cod
+    28                                  start: 
+    29                                      ;fopen(filename,mod_acces)
+    30 00000000 68[2F030000]                push dword mod_acces
+    31 00000005 68[24030000]                push dword filename
+    32 0000000A FF15[00000000]              call [fopen]
+    33 00000010 83C408                      add esp,4*2
+    34 00000013 83F800                      cmp EAX,0
+    35 00000016 0F84BE000000                JE eroare
+    36 0000001C A3[31030000]                mov [descriptor],EAX
+    37 00000021 BE[04000000]                mov esi,N
+    38 00000026 BF[94010000]                mov edi,P
+    39 0000002B B900000000                  mov ecx,0
+    40 00000030 BA00000000                  mov edx,0
+    41                                      repeta:
+    42                                      ;fscanf(descriptor,format_citire,a)
+    43 00000035 56                          push esi
+    44 00000036 57                          push edi
+    45 00000037 51                          push ecx
+    46 00000038 52                          push edx
+    47 00000039 68[00000000]                push a
+    48 0000003E 68[52030000]                push format_citire
+    49 00000043 FF35[31030000]              push dword[descriptor]
+    50 00000049 FF15[00000000]              call [fscanf]
+    51 0000004F 83C40C                      add esp,4*3
+    52 00000052 5A                          pop edx
+    53 00000053 59                          pop ecx
+    54 00000054 5F                          pop edi
+    55 00000055 5E                          pop esi
+    56 00000056 83F801                      cmp eax,1
+    57 00000059 751E                        JNE iesire
+    58 0000005B 8B1D[00000000]              mov ebx,[a]
+    59 00000061 F7C301000000                test ebx,1
+    60 00000067 7408                        JZ par
+    61 00000069 891E                        mov dword[esi],ebx
+    62 0000006B 83C604                      add esi,4
+    63 0000006E 41                          inc ecx
+    64 0000006F EBC4                        jmp repeta
+    65                                      par:
+    66 00000071 891F                        mov dword[edi],ebx
+    67 00000073 83C704                      add edi,4
+    68 00000076 42                          inc edx
+    69 00000077 EBBC                        JMP repeta
+    70                                      
+    71                                  iesire:
+    72                                  ;fclose(descriptor)
+    73 00000079 52                          push edx
+    74 0000007A 51                          push ecx
+    75 0000007B FF35[31030000]              push dword [descriptor]
+    76 00000081 FF15[00000000]              call [fclose]
+    77 00000087 83C404                      add esp,4
+    78                                      
+    79 0000008A BE[04000000]                mov esi,N
+    80 0000008F 59                          pop ecx
+    81                                      afisare_imp:
+    82 00000090 AD                          lodsd
+    83 00000091 51                          push ecx
+    84 00000092 56                          push esi
+    85 00000093 50                          push eax
+    86 00000094 68[52030000]                push format_citire
+    87 00000099 FF15[00000000]              call [printf]
+    88 0000009F 83C408                      add esp,4*2
+    89 000000A2 5E                          pop esi
+    90 000000A3 59                          pop ecx
+    91 000000A4 E2EA                        loop afisare_imp
+    92                                      
+    93 000000A6 68[56030000]                push spatiu
+    94 000000AB FF15[00000000]              call [printf]
+    95 000000B1 83C404                      add esp,4
+    96                                      
+    97 000000B4 BE[94010000]                mov esi,P
+    98 000000B9 5A                          pop edx
+    99 000000BA 89D1                        mov ecx,edx
+   100                                      afisare_par:
+   101 000000BC AD                          lodsd
+   102 000000BD 51                          push ecx
+   103 000000BE 56                          push esi
+   104 000000BF 50                          push eax
+   105 000000C0 68[52030000]                push format_citire
+   106 000000C5 FF15[00000000]              call [printf]
+   107 000000CB 83C408                      add esp,4*2
+   108 000000CE 5E                          pop esi
+   109 000000CF 59                          pop ecx
+   110 000000D0 E2EA                        loop afisare_par
+   111                                      
+   112 000000D2 6A00                        push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+   113 000000D4 FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului
+   114                                      eroare:
+   115 000000DA 68[35030000]                push mesaj
+   116 000000DF FF15[00000000]              call [printf]
+   117 000000E5 6A00                        push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+   118 000000E7 FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului

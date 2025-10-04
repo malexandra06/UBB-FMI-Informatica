@@ -1,0 +1,106 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import exit msvcrt.dll
+     9                                  extern printf, exit,scanf,fopen,fscanf,fclose
+    10                                  
+    11                                  segment data use32
+    12 00000000 00000000                a dd 0                      ; Variabilă pentru numărul citit
+    13 00000004 10                      minn db 16                  ; Variabilă pentru minimul curent
+    14 00000005 <res 00000064>          sir_min resb 100            ; Șirul cifrelor minime
+    15 00000069 00                      len db 0                    ; Lungimea șirului de minime
+    16 0000006A 696E7075742E747874-     nume_fisier db 'input.txt', 0
+    16 00000073 00                 
+    17 00000074 7200                    mod_acces db 'r', 0
+    18 00000076 4E7520732D61207075-     mesaj_eroare db 'Nu s-a putut citi din fisierul', 0
+    18 0000007F 747574206369746920-
+    18 00000088 64696E206669736965-
+    18 00000091 72756C00           
+    19 00000095 FFFFFFFF                descriptor dd -1            ; Descriptorul fișierului
+    20 00000099 257800                  format_citire db '%x', 0    ; Format de citire pentru numere hexazecimale
+    21 0000009C 25752000                format_afis db '%u ', 0     ; Format pentru afișarea cifrelor minime
+    22                                  
+    23                                  segment code use32 public code
+    24                                  start:
+    25                                      ; Deschiderea fișierului
+    26 00000000 68[74000000]                push dword mod_acces
+    27 00000005 68[6A000000]                push dword nume_fisier
+    28 0000000A FF15[00000000]              call [fopen]
+    29 00000010 83C408                      add esp, 4*2
+    30 00000013 83F800                      cmp eax, 0
+    31 00000016 0F84A0000000                je eroare_la_deschidere
+    32 0000001C A3[95000000]                mov [descriptor], eax
+    33 00000021 BF[05000000]                mov edi, sir_min
+    34                                  
+    35                                      ; Bucla principală
+    36                                  bucla:
+    37 00000026 68[00000000]                push dword a
+    38 0000002B 68[99000000]                push dword format_citire
+    39 00000030 FF35[95000000]              push dword [descriptor]
+    40 00000036 FF15[00000000]              call [fscanf]
+    41 0000003C 83C40C                      add esp, 4*3
+    42                                  
+    43                                      ; Verificare rezultat fscanf
+    44 0000003F 83F801                      cmp eax, 1             ; Dacă nu s-a citit un număr
+    45 00000042 7C37                        jl iesire              ; Ieșire din buclă
+    46                                  
+    47                                      ; Resetare pentru un nou număr
+    48 00000044 C605[04000000]10            mov byte [minn], 16    ; Resetare minim
+    49                                  
+    50                                      ; Procesare cifre hexazecimale
+    51 0000004B 8B1D[00000000]              mov ebx, [a]           ; Numărul citit
+    52                                  procesare_cifre:
+    53 00000051 85DB                        test ebx, ebx          ; Verifică dacă mai sunt cifre
+    54 00000053 7418                        jz final_cifre         ; Dacă nu mai sunt, termină
+    55 00000055 89DA                        mov edx, ebx           ; Obține ultima cifră
+    56 00000057 83E20F                      and edx, 0xF           ; Extrage cifra hexazecimală
+    57 0000005A 3A15[04000000]              cmp dl, byte [minn]
+    58 00000060 7706                        ja skip_minim
+    59 00000062 8815[04000000]              mov byte [minn], dl    ; Actualizează minimul
+    60                                  skip_minim:
+    61 00000068 C1EB04                      shr ebx, 4             ; Treci la următoarea cifră
+    62 0000006B EBE4                        jmp procesare_cifre
+    63                                  
+    64                                  final_cifre:
+    65                                      ; Salvează minimul în șir
+    66 0000006D FE05[69000000]              inc byte [len]
+    67 00000073 A0[04000000]                mov al, [minn]
+    68 00000078 AA                          stosb
+    69 00000079 EBAB                        jmp bucla
+    70                                  
+    71                                  iesire:
+    72                                      ; Închide fișierul
+    73 0000007B FF35[95000000]              push dword [descriptor]
+    74 00000081 FF15[00000000]              call [fclose]
+    75 00000087 83C404                      add esp, 4
+    76                                  
+    77                                      ; Afișare cifre minime
+    78 0000008A B900000000                  mov ecx, 0
+    79 0000008F 8A0D[69000000]              mov cl, [len]
+    80 00000095 FC                          cld
+    81 00000096 BE[05000000]                mov esi, sir_min
+    82                                  afisare:
+    83 0000009B B800000000                  mov eax,0
+    84 000000A0 51                          push ecx
+    85 000000A1 AC                          lodsb
+    86 000000A2 50                          push eax
+    87 000000A3 68[9C000000]                push dword format_afis
+    88 000000A8 FF15[00000000]              call [printf]
+    89 000000AE 83C408                      add esp, 4*2
+    90 000000B1 59                          pop ecx
+    91 000000B2 E2E7                        loop afisare
+    92                                  
+    93                                      ; Terminare program
+    94 000000B4 6A00                        push 0
+    95 000000B6 FF15[00000000]              call [exit]
+    96                                  
+    97                                  eroare_la_deschidere:
+    98 000000BC 68[76000000]                push dword mesaj_eroare
+    99 000000C1 FF15[00000000]              call [printf]
+   100 000000C7 83C404                      add esp, 4
+   101 000000CA 6A00                        push 0
+   102 000000CC FF15[00000000]              call [exit]

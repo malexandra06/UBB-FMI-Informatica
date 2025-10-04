@@ -1,0 +1,62 @@
+     1                                  bits 32 ;asamblare si compilare pentru arhitectura de 32 biti
+     2                                  ; definim punctul de intrare in programul principal
+     3                                  global  start 
+     4                                  import fclose msvcrt.dll
+     5                                  import fscanf msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  import fprintf msvcrt.dll
+    10                                  import gets msvcrt.dll
+    11                                  import exit msvcrt.dll
+    12                                  extern printf, exit,scanf,fopen,fscanf,fclose,fprintf,gets
+    13                                          ; msvcrt.dll contine exit, printf si toate celelalte functii C-runtime importante
+    14                                          
+    15                                  ;5.	Se citeste de la tastatura un sir de caractere (litere mici si litere mari, cifre, caractere speciale, etc). Sa se formeze un sir nou doar cu literele mici si un sir nou doar cu literele mari. Sa se afiseze cele
+    16                                  
+    17                                  segment  data use32 class=data ; segmentul de date in care se vor defini variabilele 
+    18 00000000 <res 00000064>          sir resb 100
+    19 00000064 <res 00000064>          sir_a resb 100
+    20 000000C8 <res 00000064>          sir_A resb 100
+    21 0000012C 25732000                format db '%s ',0
+    22                                  
+    23                                  segment  code use32 class=code ; segmentul de cod
+    24                                  start: 
+    25                                      ;gets(buffer)
+    26 00000000 68[00000000]                push sir
+    27 00000005 FF15[00000000]              call [gets]
+    28 0000000B 83C404                      add esp,4
+    29                                      
+    30 0000000E BE[00000000]                mov esi,sir
+    31 00000013 BF[C8000000]                mov edi,sir_A
+    32 00000018 BB[64000000]                mov ebx,sir_a
+    33                                      repeta:
+    34 0000001D AC                              lodsb
+    35 0000001E 3C00                            cmp al,0
+    36 00000020 741A                            JE iesire
+    37 00000022 3C41                            cmp al,'A'
+    38 00000024 72F7                            JB repeta
+    39 00000026 3C7A                            cmp al,'z'
+    40 00000028 77F3                            JA repeta
+    41 0000002A 3C5A                            cmp al,'Z'
+    42 0000002C 760B                            JBE sir_mare
+    43 0000002E 3C61                            cmp al,'a'
+    44 00000030 72EB                            JB repeta
+    45 00000032 8803                            mov byte [ebx],al
+    46 00000034 83C301                          add ebx,1
+    47 00000037 EBE4                            jmp repeta
+    48                                          sir_mare:
+    49 00000039 AA                                  stosb
+    50 0000003A EBE1                            jmp repeta
+    51                                      iesire:
+    52 0000003C 68[C8000000]                push sir_A
+    53 00000041 68[2C010000]                push format
+    54 00000046 FF15[00000000]              call [printf]
+    55 0000004C 83C408                      add esp,4*2
+    56                                      
+    57 0000004F 68[64000000]                push sir_a
+    58 00000054 68[2C010000]                push format
+    59 00000059 FF15[00000000]              call [printf]
+    60 0000005F 83C408                      add esp,4*2
+    61 00000062 6A00                        push   dword 0 ;se pune pe stiva codul de retur al functiei exit
+    62 00000064 FF15[00000000]          	call   [exit] ;apelul functiei sistem exit pentru terminarea executiei programului

@@ -1,0 +1,12 @@
+The Piano;Actiunea se desfasoara in Noua Zeelanda a mijlocului de secol nouasprezece.;drama
+Forrest Gump;Asezat pe o banca, asteptand autobuzul, Forrest, pe parcursul filmului, isi povesteste viata.;comedie
+Umbra Cetatii;Un fierar descopera o conspiratie care ameninta sa distruga un oras medieval;aventura
+Ultima Nota;Un pianist accidentat isi regaseste inspiratia alaturi de o violonista;drama
+Cronici din Viitor;Un detectiv investigheaza disparitii misterioase prin linii temporale;science-fiction
+Razbunarea Pustietatii;O femeie isi razbuna familia intr-un desert post-apocaliptic;actiune
+Dansul Luminilor;O anomalie misterioasa schimba vietile unui orasel armonios;fantezie
+Ecoul din Trecut;O jurnalista investigheaza o caseta audio legata de un caz vechi;thriller
+Stele Inghetate;Un astronaut ratacit incearca sa se intoarca pe Pamant;aventura
+Cararea Umbrelor;Prieteni cauta o comoara intr-o padure, urmariti de ceva sinistru;horror
+Iubiri la Apus;Doi necunoscuti descopera dragostea într-un oras pitoresc;romantic
+tITANIC;ABC;ABC

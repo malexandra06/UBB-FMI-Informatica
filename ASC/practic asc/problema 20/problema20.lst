@@ -1,0 +1,106 @@
+     1                                  bits 32
+     2                                  global start 
+     3                                  import fclose msvcrt.dll
+     4                                  import fscanf msvcrt.dll
+     5                                  import fopen msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import gets msvcrt.dll
+    10                                  import exit msvcrt.dll
+    11                                  import fread msvcrt.dll
+    12                                  extern printf, exit, scanf, fopen, fscanf, fclose, fprintf, gets,fread
+    13                                  
+    14                                  
+    15                                  ;20.	Se citeste de la tastatura un cuvant si un numar. Daca numarul este par se cere criptarea cuvantului prin adunarea la fiecare caracter a numarului 20. Daca numarul este impar se cere criptarea cuvantului prin a
+    16                                  
+    17                                  ;ex: arici 3 => aparipicipi
+    18                                  
+    19                                  
+    20                                  
+    21                                  segment data use32 class=data
+    22                                  
+    23 00000000 00000000                n dd 0
+    24 00000004 <res 00000064>          cuv resb 100
+    25 00000068 <res 000000C8>          criptat resb 200
+    26 00000130 257300                  format_sir db '%s',0
+    27 00000133 257500                  format_nr db '%u',0
+    28 00000136 6165696F75              vocale db 'aeiou'
+    29                                  
+    30                                  segment code use32 class=code
+    31                                  start:
+    32                                      
+    33                                      ;scanf(%s,cuv)
+    34 00000000 68[04000000]                push cuv 
+    35 00000005 68[30010000]                push format_sir
+    36 0000000A FF15[00000000]              call [scanf]
+    37 00000010 83C408                      add esp,4*2
+    38                                      
+    39                                      ;scanf(%u,&n)
+    40 00000013 68[00000000]                push n 
+    41 00000018 68[33010000]                push format_nr
+    42 0000001D FF15[00000000]              call [scanf]
+    43 00000023 83C408                      add esp,4*2
+    44                                      
+    45 00000026 F705[00000000]0100-         test dword[n],1
+    45 0000002E 0000               
+    46 00000030 7416                        JZ par_et
+    47 00000032 68[36010000]                push vocale
+    48 00000037 68[68000000]                push criptat
+    49 0000003C 68[04000000]                push cuv
+    50 00000041 E829000000                  call impar
+    51 00000046 EB0F                        JMP afisare
+    52                                      par_et:
+    53 00000048 68[68000000]                    push criptat
+    54 0000004D 68[04000000]                    push cuv
+    55 00000052 E84C000000                      call par
+    56                                      afisare:
+    57 00000057 68[68000000]                    push criptat
+    58 0000005C 68[30010000]                    push format_sir
+    59 00000061 FF15[00000000]                  call [printf]
+    60 00000067 6A00                        push dword 0
+    61 00000069 FF15[00000000]              call [exit]
+    62                                  
+    63                                  impar:
+    64 0000006F 8B7C2408                    mov edi, [esp+8]
+    65 00000073 8B742404                    mov esi, [esp+4]
+    66 00000077 8B5C240C                    mov ebx, [esp+12]
+    67                                      criptare:
+    68 0000007B AC                                 lodsb
+    69 0000007C 3C00                               cmp al,0
+    70 0000007E 741D                               JE final2
+    71 00000080 88C2                               mov dl,al
+    72 00000082 AA                                 stosb
+    73 00000083 B905000000                         mov ecx,5
+    74 00000088 8B5C240C                           mov ebx,[esp+12]
+    75                                             verific:
+    76 0000008C 3813                               cmp byte[ebx],dl
+    77 0000008E 7405                               JE ies
+    78 00000090 43                                 inc ebx
+    79 00000091 E2F9                               loop verific
+    80 00000093 EBE6                               JMP criptare
+    81                                             ies:
+    82 00000095 B070                                  mov al,'p'
+    83 00000097 AA                                    stosb
+    84 00000098 88D0                                  mov al,dl
+    85 0000009A AA                                    stosb
+    86 0000009B EBDE                                  JMP criptare
+    87                                      final2:
+    88 0000009D C60700                          mov byte [edi],0
+    89 000000A0 C20C00                          ret 4*3
+    90                                      
+    91                                  
+    92                                  par:
+    93 000000A3 8B742404                     mov esi,[esp+4]
+    94 000000A7 8B7C2408                     mov edi,[esp+8]
+    95                                       transformare:
+    96 000000AB AC                                 lodsb
+    97 000000AC 3C00                               cmp al,0
+    98 000000AE 7405                               JE final1
+    99 000000B0 0414                               add al,20
+   100 000000B2 AA                                 stosb
+   101 000000B3 EBF6                               JMP transformare
+   102                                      final1:
+   103 000000B5 C60700                          mov byte[edi],0
+   104 000000B8 C20800                          ret 4*2
+   105                                     
