@@ -1,0 +1,3 @@
+﻿  practic2.cpp
+D:\algoritmica grafelor\practic2\practic2\practic2.cpp(63,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  practic2.vcxproj -> D:\algoritmica grafelor\practic2\practic2\x64\Debug\practic2.exe

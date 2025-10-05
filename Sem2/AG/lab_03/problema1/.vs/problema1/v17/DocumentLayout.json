@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\algoritmica grafelor\\lab_03\\problema1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{64DA58DA-40F0-4260-B7EA-EC8232903268}|problema1.vcxproj|D:\\algoritmica grafelor\\lab_03\\problema1\\problema1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{64DA58DA-40F0-4260-B7EA-EC8232903268}|problema1.vcxproj|solutionrelative:problema1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64DA58DA-40F0-4260-B7EA-EC8232903268}|problema1.vcxproj|D:\\algoritmica grafelor\\lab_03\\problema1\\out.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{64DA58DA-40F0-4260-B7EA-EC8232903268}|problema1.vcxproj|solutionrelative:out.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64DA58DA-40F0-4260-B7EA-EC8232903268}|problema1.vcxproj|D:\\algoritmica grafelor\\lab_03\\problema1\\graf.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{64DA58DA-40F0-4260-B7EA-EC8232903268}|problema1.vcxproj|solutionrelative:graf.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "out.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\lab_03\\problema1\\out.txt",
+              "RelativeDocumentMoniker": "out.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\lab_03\\problema1\\out.txt",
+              "RelativeToolTip": "out.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-04-04T05:12:34.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "graf.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\lab_03\\problema1\\graf.txt",
+              "RelativeDocumentMoniker": "graf.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\lab_03\\problema1\\graf.txt",
+              "RelativeToolTip": "graf.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-04-04T05:11:37.79Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "problema1.cpp",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\lab_03\\problema1\\problema1.cpp",
+              "RelativeDocumentMoniker": "problema1.cpp",
+              "ToolTip": "D:\\algoritmica grafelor\\lab_03\\problema1\\problema1.cpp",
+              "RelativeToolTip": "problema1.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-04T05:11:02.405Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

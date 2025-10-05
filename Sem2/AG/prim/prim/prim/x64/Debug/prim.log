@@ -1,0 +1,3 @@
+﻿  prim.cpp
+D:\algoritmica grafelor\prim\prim\prim.cpp(82,9): warning C4101: 'r': unreferenced local variable
+  prim.vcxproj -> D:\algoritmica grafelor\prim\prim\x64\Debug\prim.exe

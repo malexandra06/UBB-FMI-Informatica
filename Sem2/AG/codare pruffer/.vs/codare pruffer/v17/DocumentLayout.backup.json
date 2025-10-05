@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\algoritmica grafelor\\codare pruffer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D3672D9F-9FCD-4394-9F0A-E6B0A7844C7D}|codare pruffer.vcxproj|D:\\algoritmica grafelor\\codare pruffer\\codare pruffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3672D9F-9FCD-4394-9F0A-E6B0A7844C7D}|codare pruffer.vcxproj|solutionrelative:codare pruffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3672D9F-9FCD-4394-9F0A-E6B0A7844C7D}|codare pruffer.vcxproj|D:\\algoritmica grafelor\\codare pruffer\\graf.out||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D3672D9F-9FCD-4394-9F0A-E6B0A7844C7D}|codare pruffer.vcxproj|solutionrelative:graf.out||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3672D9F-9FCD-4394-9F0A-E6B0A7844C7D}|codare pruffer.vcxproj|D:\\algoritmica grafelor\\codare pruffer\\graf.in||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D3672D9F-9FCD-4394-9F0A-E6B0A7844C7D}|codare pruffer.vcxproj|solutionrelative:graf.in||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "graf.out",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\codare pruffer\\graf.out",
+              "RelativeDocumentMoniker": "graf.out",
+              "ToolTip": "D:\\algoritmica grafelor\\codare pruffer\\graf.out",
+              "RelativeToolTip": "graf.out",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-31T04:23:46.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "graf.in",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\codare pruffer\\graf.in",
+              "RelativeDocumentMoniker": "graf.in",
+              "ToolTip": "D:\\algoritmica grafelor\\codare pruffer\\graf.in",
+              "RelativeToolTip": "graf.in",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-23T06:22:01.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "codare pruffer.cpp",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\codare pruffer\\codare pruffer.cpp",
+              "RelativeDocumentMoniker": "codare pruffer.cpp",
+              "ToolTip": "D:\\algoritmica grafelor\\codare pruffer\\codare pruffer.cpp*",
+              "RelativeToolTip": "codare pruffer.cpp*",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAD8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T06:00:41.246Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

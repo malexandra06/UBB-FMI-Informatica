@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\algoritmica grafelor\\lab_02\\Problema2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FAEDD80A-4DBC-4AC1-8E61-D42BB3323D6D}|Problema2.vcxproj|D:\\algoritmica grafelor\\lab_02\\Problema2\\input.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{FAEDD80A-4DBC-4AC1-8E61-D42BB3323D6D}|Problema2.vcxproj|solutionrelative:input.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAEDD80A-4DBC-4AC1-8E61-D42BB3323D6D}|Problema2.vcxproj|D:\\algoritmica grafelor\\lab_02\\Problema2\\problema2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FAEDD80A-4DBC-4AC1-8E61-D42BB3323D6D}|Problema2.vcxproj|solutionrelative:problema2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "input.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\lab_02\\Problema2\\input.txt",
+              "RelativeDocumentMoniker": "input.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\lab_02\\Problema2\\input.txt",
+              "RelativeToolTip": "input.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-03-21T06:19:57.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "problema2.cpp",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\lab_02\\Problema2\\problema2.cpp",
+              "RelativeDocumentMoniker": "problema2.cpp",
+              "ToolTip": "D:\\algoritmica grafelor\\lab_02\\Problema2\\problema2.cpp",
+              "RelativeToolTip": "problema2.cpp",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-21T06:14:16.92Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

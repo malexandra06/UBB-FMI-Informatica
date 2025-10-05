@@ -1,0 +1,73 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{732A4FCE-B424-411E-9584-316FE8EE7412}|ciclu eulerian.vcxproj|D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\ciclu eulerian.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{732A4FCE-B424-411E-9584-316FE8EE7412}|ciclu eulerian.vcxproj|solutionrelative:ciclu eulerian.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{732A4FCE-B424-411E-9584-316FE8EE7412}|ciclu eulerian.vcxproj|D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\output.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{732A4FCE-B424-411E-9584-316FE8EE7412}|ciclu eulerian.vcxproj|solutionrelative:output.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{732A4FCE-B424-411E-9584-316FE8EE7412}|ciclu eulerian.vcxproj|D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\input.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{732A4FCE-B424-411E-9584-316FE8EE7412}|ciclu eulerian.vcxproj|solutionrelative:input.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "output.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\output.txt",
+              "RelativeDocumentMoniker": "output.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\output.txt",
+              "RelativeToolTip": "output.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-31T06:09:50.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "input.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\input.txt",
+              "RelativeDocumentMoniker": "input.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\input.txt",
+              "RelativeToolTip": "input.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-31T06:09:39.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ciclu eulerian.cpp",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\ciclu eulerian.cpp",
+              "RelativeDocumentMoniker": "ciclu eulerian.cpp",
+              "ToolTip": "D:\\algoritmica grafelor\\ciclu_eulerian\\ciclu eulerian\\ciclu eulerian.cpp",
+              "RelativeToolTip": "ciclu eulerian.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-31T06:09:12.506Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

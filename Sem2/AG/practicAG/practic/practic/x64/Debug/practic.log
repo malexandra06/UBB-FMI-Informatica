@@ -1,0 +1,25 @@
+﻿  practic.cpp
+D:\algoritmica grafelor\practicAG\practic\practic.cpp(27,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:         ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:         and
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:             _Ty1=float
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16): warning C4244:         ]
+  (compiling source file 'practic.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\utility(274,16):
+      the template instantiation context (the oldest one first) is
+          D:\algoritmica grafelor\practicAG\practic\practic.cpp(49,12):
+          see reference to function template instantiation 'std::pair<float,int>::pair<int,int&,0>(_Other1 &&,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=int &
+          ]
+              D:\algoritmica grafelor\practicAG\practic\practic.cpp(49,11):
+              see the first reference to 'std::pair<float,int>::pair' in 'Dijkstra'
+  
+  practic.vcxproj -> D:\algoritmica grafelor\practicAG\practic\x64\Debug\practic.exe

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\algoritmica grafelor\lab_02\problema3\x64\Debug\problema3.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\lab_02\problema3\cuvinte.txt</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\lab_02\problema3\labirint1.txt</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\lab_02\problema3\labirint2.txt</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

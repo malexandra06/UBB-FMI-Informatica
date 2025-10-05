@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\algoritmica grafelor\lab_03\problema1\x64\Debug\problema1.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\lab_03\problema1\graf.txt</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\lab_03\problema1\out.txt</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

@@ -1,0 +1,74 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\algoritmica grafelor\\practic2\\practic2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{694C67CB-76B2-458E-ADD7-1F80E0ED154A}|practic2.vcxproj|D:\\algoritmica grafelor\\practic2\\practic2\\graf.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{694C67CB-76B2-458E-ADD7-1F80E0ED154A}|practic2.vcxproj|solutionrelative:graf.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694C67CB-76B2-458E-ADD7-1F80E0ED154A}|practic2.vcxproj|D:\\algoritmica grafelor\\practic2\\practic2\\practic2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{694C67CB-76B2-458E-ADD7-1F80E0ED154A}|practic2.vcxproj|solutionrelative:practic2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694C67CB-76B2-458E-ADD7-1F80E0ED154A}|practic2.vcxproj|D:\\algoritmica grafelor\\practic2\\practic2\\graf.in||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{694C67CB-76B2-458E-ADD7-1F80E0ED154A}|practic2.vcxproj|solutionrelative:graf.in||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "graf.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\practic2\\practic2\\graf.txt",
+              "RelativeDocumentMoniker": "graf.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\practic2\\practic2\\graf.txt",
+              "RelativeToolTip": "graf.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-06-06T05:45:52.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "graf.in",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\practic2\\practic2\\graf.in",
+              "RelativeDocumentMoniker": "graf.in",
+              "ToolTip": "D:\\algoritmica grafelor\\practic2\\practic2\\graf.in",
+              "RelativeToolTip": "graf.in",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-06T05:36:26.821Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "practic2.cpp",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\practic2\\practic2\\practic2.cpp",
+              "RelativeDocumentMoniker": "practic2.cpp",
+              "ToolTip": "D:\\algoritmica grafelor\\practic2\\practic2\\practic2.cpp",
+              "RelativeToolTip": "practic2.cpp",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAAEgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-06T05:13:50.393Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

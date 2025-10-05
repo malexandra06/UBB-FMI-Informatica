@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\algoritmica grafelor\\codare huffman\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{426372BE-F50C-4F95-85A7-7C2975FE6B75}|codare huffman.vcxproj|D:\\algoritmica grafelor\\codare huffman\\input.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{426372BE-F50C-4F95-85A7-7C2975FE6B75}|codare huffman.vcxproj|solutionrelative:input.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{426372BE-F50C-4F95-85A7-7C2975FE6B75}|codare huffman.vcxproj|D:\\algoritmica grafelor\\codare huffman\\codare huffman.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{426372BE-F50C-4F95-85A7-7C2975FE6B75}|codare huffman.vcxproj|solutionrelative:codare huffman.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{426372BE-F50C-4F95-85A7-7C2975FE6B75}|codare huffman.vcxproj|D:\\algoritmica grafelor\\codare huffman\\output.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{426372BE-F50C-4F95-85A7-7C2975FE6B75}|codare huffman.vcxproj|solutionrelative:output.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "output.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\codare huffman\\output.txt",
+              "RelativeDocumentMoniker": "output.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\codare huffman\\output.txt",
+              "RelativeToolTip": "output.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-24T05:55:38.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "input.txt",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\codare huffman\\input.txt",
+              "RelativeDocumentMoniker": "input.txt",
+              "ToolTip": "D:\\algoritmica grafelor\\codare huffman\\input.txt",
+              "RelativeToolTip": "input.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABWGgAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-24T05:55:24.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "codare huffman.cpp",
+              "DocumentMoniker": "D:\\algoritmica grafelor\\codare huffman\\codare huffman.cpp",
+              "RelativeDocumentMoniker": "codare huffman.cpp",
+              "ToolTip": "D:\\algoritmica grafelor\\codare huffman\\codare huffman.cpp*",
+              "RelativeToolTip": "codare huffman.cpp*",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAAAD8AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:21:40.486Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

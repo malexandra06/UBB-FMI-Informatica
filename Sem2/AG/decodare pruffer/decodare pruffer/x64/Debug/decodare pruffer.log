@@ -1,0 +1,3 @@
+﻿  decodare pruffer.cpp
+D:\algoritmica grafelor\decodare pruffer\decodare pruffer.cpp(20,1): warning C4715: 'minim': not all control paths return a value
+  decodare pruffer.vcxproj -> D:\algoritmica grafelor\decodare pruffer\x64\Debug\decodare pruffer.exe

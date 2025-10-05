@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\algoritmica grafelor\decodare huffman\x64\Debug\decodare huffman.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\decodare huffman\input.txt</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>D:\algoritmica grafelor\decodare huffman\output.txt</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
