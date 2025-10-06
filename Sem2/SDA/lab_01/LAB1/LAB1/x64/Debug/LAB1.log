@@ -1,0 +1,4 @@
+﻿  Matrice.cpp
+D:\structuri de date si algoritmi\lab_01\LAB1\Matrice.cpp(13,32): warning C4566: character represented by universal-character-name '\u0219' cannot be represented in the current code page (1250)
+D:\structuri de date si algoritmi\lab_01\LAB1\Matrice.cpp(137,1): warning C4715: 'Matrice::modifica': not all control paths return a value
+  LAB1.vcxproj -> D:\structuri de date si algoritmi\lab_01\LAB1\x64\Debug\LAB1.exe

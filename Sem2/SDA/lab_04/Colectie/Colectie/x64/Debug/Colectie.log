@@ -1,0 +1,5 @@
+﻿  Colectie.cpp
+D:\structuri de date si algoritmi\lab_04\Colectie\Colectie.h(1,13): warning C4081: expected 'newline'; found ';'
+  (compiling source file 'Colectie.cpp')
+  
+  Colectie.vcxproj -> D:\structuri de date si algoritmi\lab_04\Colectie\x64\Debug\Colectie.exe
