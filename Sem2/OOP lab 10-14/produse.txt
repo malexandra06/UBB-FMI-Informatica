@@ -1,0 +1,13 @@
+Smantana Covalact,Lactate,Covalact,5
+Iaurt Activia,Lactate,Danone,4
+Portocale,Fructe,Citrus Import,5
+Cartofi albi,Legume,Producator local,2
+Ceapa galbena,Legume,Ferma Verde,2
+Morcovi,Legume,Legume Fresh,3
+Paine alba,Panificatie,VelPitar,4
+Paine cu seminte,Panificatie,VelPitar,5
+Apa plata Dorna,Bauturi,Dorna,3
+Coca-Cola 0.5L,Bauturi,Coca-Cola,5
+Fanta Portocale,Bauturi,Coca-Cola,5
+Pepsi Twist,Bauturi,PepsiCo,5
+Banane,Fructe,Dole,6
